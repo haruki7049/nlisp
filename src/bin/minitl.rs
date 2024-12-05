@@ -145,23 +145,27 @@ mod tests {
             }
         );
 
-        let code: &str = "(k value (k value value_second))";
+        let code: &str = "(s value value_second (s value value_second value_third))";
         let token: ConcreteSyntaxTree = Parser::tokenize(code);
         assert_eq!(
             token,
             ConcreteSyntaxTree {
                 expr: vec![
                     ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
-                    ConcreteSyntaxToken::Name(String::from('k')),
-                    ConcreteSyntaxToken::Symbol(Symbol::Space),
-                    ConcreteSyntaxToken::Name(String::from("value")),
-                    ConcreteSyntaxToken::Symbol(Symbol::Space),
-                    ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
-                    ConcreteSyntaxToken::Name(String::from('k')),
+                    ConcreteSyntaxToken::Name(String::from('s')),
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
                     ConcreteSyntaxToken::Name(String::from("value")),
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
                     ConcreteSyntaxToken::Name(String::from("value_second")),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
+                    ConcreteSyntaxToken::Name(String::from('s')),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from("value")),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from("value_second")),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from("value_third")),
                     ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
                     ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
                 ],
