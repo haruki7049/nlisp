@@ -102,6 +102,32 @@ mod tests {
     use crate::Symbol;
 
     #[test]
+    fn tokenize_with_more_spaces() {
+        let code: &str = "( i ( i value ) )";
+        let token: ConcreteSyntaxTree = Parser::tokenize(code);
+        assert_eq!(
+            token,
+            ConcreteSyntaxTree {
+                expr: vec![
+                    ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from('i')),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from('i')),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from("value")),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
+                ],
+            }
+        );
+    }
+
+    #[test]
     fn tokenize_recurse() {
         let code: &str = "(i (i value))";
         let token: ConcreteSyntaxTree = Parser::tokenize(code);
