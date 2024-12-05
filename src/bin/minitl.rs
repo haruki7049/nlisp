@@ -112,13 +112,11 @@ mod tests {
                     ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
                     ConcreteSyntaxToken::Name(String::from('i')),
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
-
                     ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
                     ConcreteSyntaxToken::Name(String::from('i')),
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
                     ConcreteSyntaxToken::Name(String::from("value")),
                     ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
-
                     ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
                 ],
             }
@@ -135,7 +133,6 @@ mod tests {
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
                     ConcreteSyntaxToken::Name(String::from("value")),
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
-
                     ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
                     ConcreteSyntaxToken::Name(String::from('k')),
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
@@ -143,7 +140,6 @@ mod tests {
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
                     ConcreteSyntaxToken::Name(String::from("value_second")),
                     ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
-
                     ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
                 ],
             }
@@ -160,7 +156,6 @@ mod tests {
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
                     ConcreteSyntaxToken::Name(String::from("value")),
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
-
                     ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
                     ConcreteSyntaxToken::Name(String::from('k')),
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
@@ -168,7 +163,6 @@ mod tests {
                     ConcreteSyntaxToken::Symbol(Symbol::Space),
                     ConcreteSyntaxToken::Name(String::from("value_second")),
                     ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
-
                     ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
                 ],
             }
