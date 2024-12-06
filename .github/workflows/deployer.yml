@@ -22,6 +22,8 @@ jobs:
         with:
           name: textlisp
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Register substituters
+        run: cachix use textlisp
       - name: Run nix build .#default
         run: nix build .#default
       - name: Upload executable for x86_64-linux
