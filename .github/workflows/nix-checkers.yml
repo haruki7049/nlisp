@@ -21,6 +21,8 @@ jobs:
           name: textlisp
           #signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Register substituters
+        run: cachix use textlisp
       - name: Run nix flake check
         run: nix flake check --all-systems
 
@@ -41,6 +43,8 @@ jobs:
           name: textlisp
           #signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Register substituters
+        run: cachix use textlisp
       - name: Run nix-build with flakes
         run: nix build .#default
 
@@ -61,5 +65,7 @@ jobs:
           name: textlisp
           #signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Register substituters
+        run: cachix use textlisp
       - name: Run nix-build with flakes
         run: nix build .#doc
