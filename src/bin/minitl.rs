@@ -8,7 +8,23 @@ fn main() {
 struct Parser;
 
 #[derive(Default)]
-struct AbstractSyntaxTree;
+struct AbstractSyntaxTree {
+    expr: Vec<AbstractSyntaxToken>,
+}
+
+enum AbstractSyntaxToken {
+    Function(Function),
+    Value(Value),
+}
+
+enum Function {
+    I(Vec<String>),
+}
+
+struct Value {
+    name: String,
+    value: Box<AbstractSyntaxToken>,
+}
 
 #[derive(Debug, Default, PartialEq)]
 struct ConcreteSyntaxTree {
@@ -33,8 +49,34 @@ impl Parser {
     where
         T: Into<String>,
     {
-        let program: String = t.into();
-        let token: Vec<char> = program.chars().collect();
+        let cst: ConcreteSyntaxTree = Self::tokenize(t);
+        let mut reversed_expr: Vec<ConcreteSyntaxToken> = cst.expr.into_iter().rev().collect();
+        let mut result: AbstractSyntaxTree = AbstractSyntaxTree::default();
+        let mut list_cache: Vec<ConcreteSyntaxToken> = Vec::new();
+        let mut list_mode_is_on: bool = false;
+
+        while let Some(t) = reversed_expr.pop() {
+            if list_mode_is_on {
+                match t {
+                    ConcreteSyntaxToken::Name(n) => list_cache.push(ConcreteSyntaxToken::Name(n)),
+                    ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis) => {}
+                    ConcreteSyntaxToken::Symbol(Symbol::Space) => {}
+                    _ => todo!(),
+                }
+            } else {
+                // List mode off
+                match t {
+                    ConcreteSyntaxToken::Symbol(Symbol::Space) => {}
+                    ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis) => {
+                        panic!("Failed to parse the token: {:?}", t)
+                    }
+                    ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis) => {
+                        list_mode_is_on = true;
+                    }
+                    _ => todo!(),
+                }
+            }
+        }
 
         todo!()
     }
