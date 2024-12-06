@@ -27,5 +27,5 @@ jobs:
       - name: Upload executable for x86_64-linux
         uses: actions/upload-artifact@v4
         with:
-          name: textlisp-x86_64-linux
+          name: textlisp-${{ matrix.os }}
           path: result
