@@ -2,8 +2,12 @@ name: nix-checker
 on:
   push:
 permissions: {}
+
 jobs:
   run-nix-check:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
