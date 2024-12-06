@@ -20,6 +20,9 @@ jobs:
         run: nix flake check --all-systems
 
   run-nix-build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,6 +35,9 @@ jobs:
         run: nix build .#default
 
   run-nix-build-doc:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
