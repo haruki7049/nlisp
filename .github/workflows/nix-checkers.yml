@@ -46,7 +46,7 @@ jobs:
       - name: Register substituters
         run: cachix use textlisp
       - name: Run nix-build with flakes
-        run: nix build .#default
+        run: nix build .#default | jq -r '.[].outputs.out' | cachix push textlisp
 
   run-nix-build-doc:
     strategy:
@@ -68,4 +68,4 @@ jobs:
       - name: Register substituters
         run: cachix use textlisp
       - name: Run nix-build with flakes
-        run: nix build .#doc
+        run: nix build .#doc | jq -r '.[].outputs.out' | cachix push textlisp
