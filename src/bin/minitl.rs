@@ -113,11 +113,11 @@ impl Parser {
 #[cfg(test)]
 mod tests {
     mod parse {
-        use crate::AbstractSyntaxTree;
         use crate::AbstractSyntaxToken;
+        use crate::AbstractSyntaxTree;
         use crate::Function;
-        use crate::Value;
         use crate::Parser;
+        use crate::Value;
 
         #[test]
         fn parse() {
@@ -126,12 +126,10 @@ mod tests {
             assert_eq!(
                 ast,
                 AbstractSyntaxTree {
-                    expr: vec![
-                        AbstractSyntaxToken::Function(Function::IFunction(Value {
-                            Name: String::from("value"),
-                            Value: Box::new(),
-                        })),
-                    ],
+                    expr: vec![AbstractSyntaxToken::Function(Function::IFunction(Value {
+                        Name: String::from("value"),
+                        Value: Box::new(),
+                    })),],
                 }
             );
         }
