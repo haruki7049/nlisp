@@ -59,7 +59,10 @@ impl Parser {
                         match c {
                             ')' => expr.push(ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis)),
                             ' ' => expr.push(ConcreteSyntaxToken::Symbol(Symbol::Space)),
-                            _ => panic!("Expected ')' or a white_space, But found other character: {:?}", c),
+                            _ => panic!(
+                                "Expected ')' or a white_space, But found other character: {:?}",
+                                c
+                            ),
                         }
                         string_mode_is_on = false;
 
