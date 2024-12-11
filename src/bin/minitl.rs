@@ -15,19 +15,19 @@ struct AbstractSyntaxTree {
 #[derive(Debug, PartialEq)]
 enum AbstractSyntaxToken {
     Function(Function),
+    Value(Value),
 }
 
 #[derive(Debug, PartialEq)]
-enum Function {
-    IFunction(Value),
-    SFunction(Value, Value, Value),
-    KFunction(Value),
-}
-
-#[derive(Debug, PartialEq)]
-struct Value {
+struct Function {
     Name: String,
-    Value: Box<Value>,
+    Arguments: Vec<AbstractSyntaxToken>,
+}
+
+#[derive(Debug, PartialEq)]
+enum Value {
+    UnsignedInteger(usize),
+    UnsignedIntegerArray(Vec<usize>),
 }
 
 #[derive(Debug, Default, PartialEq)]
@@ -121,15 +121,15 @@ mod tests {
 
         #[test]
         fn parse() {
-            let code: &str = "(i value)";
+            let code: &str = "(i 1)";
             let ast: AbstractSyntaxTree = Parser::parse(code);
             assert_eq!(
                 ast,
                 AbstractSyntaxTree {
-                    expr: vec![AbstractSyntaxToken::Function(Function::IFunction(Value {
-                        Name: String::from("value"),
-                        Value: Box::new(),
-                    })),],
+                    expr: vec![AbstractSyntaxToken::Function(Function {
+                        Name: "i".to_string(),
+                        Arguments: vec![AbstractSyntaxToken::Value(Value::UnsignedInteger(1)),],
+                    }),],
                 }
             );
         }
