@@ -125,6 +125,51 @@ mod tests {
     }
 
     #[test]
+    fn tokenize_number() {
+        let code: &str = "( i ( i 2 ) )";
+        let token: ConcreteSyntaxTree = Parser::tokenize(code);
+        assert_eq!(
+            token,
+            ConcreteSyntaxTree {
+                expr: vec![
+                    ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from('i')),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from('i')),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from("2")),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
+                ],
+            }
+        );
+
+        let code: &str = "( function2 23 34 )";
+        let token: ConcreteSyntaxTree = Parser::tokenize(code);
+        assert_eq!(
+            token,
+            ConcreteSyntaxTree {
+                expr: vec![
+                    ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from("function2")),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from("23")),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Name(String::from("34")),
+                    ConcreteSyntaxToken::Symbol(Symbol::Space),
+                    ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis),
+                ],
+            }
+        );
+    }
+
+    #[test]
     fn tokenize_recurse() {
         let code: &str = "(i (i value))";
         let token: ConcreteSyntaxTree = Parser::tokenize(code);
