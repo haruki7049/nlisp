@@ -15,7 +15,7 @@ struct AbstractSyntaxTree {
 #[derive(Debug, PartialEq)]
 enum AbstractSyntaxToken {
     Function(Function),
-    Value(Value),
+    Atom(Atom),
 }
 
 #[derive(Debug, PartialEq)]
@@ -25,7 +25,7 @@ struct Function {
 }
 
 #[derive(Debug, PartialEq)]
-enum Value {
+enum Atom {
     UnsignedInteger(usize),
     UnsignedIntegerArray(Vec<usize>),
 }
@@ -121,7 +121,7 @@ mod tests {
         use crate::AbstractSyntaxTree;
         use crate::Function;
         use crate::Parser;
-        use crate::Value;
+        use crate::Atom;
 
         #[test]
         fn parse() {
@@ -132,7 +132,7 @@ mod tests {
                 AbstractSyntaxTree {
                     expr: vec![AbstractSyntaxToken::Function(Function {
                         name: "i".to_string(),
-                        arguments: vec![AbstractSyntaxToken::Value(Value::UnsignedInteger(1)),],
+                        arguments: vec![AbstractSyntaxToken::Atom(Atom::UnsignedInteger(1)),],
                     }),],
                 }
             );
