@@ -53,17 +53,17 @@ impl Parser {
             if string_mode_is_on {
                 match c {
                     '(' => panic!("Unexpected token: {:?}", c),
-                    ')' => {
+                    ')' | ' ' => {
                         expr.push(ConcreteSyntaxToken::Name(string_cache.clone()));
-                        expr.push(ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis));
-                        string_mode_is_on = false;
 
-                        // Clean up string_cache
-                        string_cache.clear();
-                    }
-                    ' ' => {
-                        expr.push(ConcreteSyntaxToken::Name(string_cache.clone()));
-                        expr.push(ConcreteSyntaxToken::Symbol(Symbol::Space));
+                        match c {
+                            ')' => expr.push(ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis)),
+                            ' ' => expr.push(ConcreteSyntaxToken::Symbol(Symbol::Space)),
+                            _ => panic!(
+                                "Expected ')' or a white_space, But found other character: {:?}",
+                                c
+                            ),
+                        }
                         string_mode_is_on = false;
 
                         // Clean up string_cache
@@ -79,9 +79,6 @@ impl Parser {
                     '(' => expr.push(ConcreteSyntaxToken::Symbol(Symbol::LeftParenthesis)),
                     ')' => expr.push(ConcreteSyntaxToken::Symbol(Symbol::RightParenthesis)),
                     ' ' => expr.push(ConcreteSyntaxToken::Symbol(Symbol::Space)),
-                    'i' => expr.push(ConcreteSyntaxToken::Name(String::from('i'))),
-                    'k' => expr.push(ConcreteSyntaxToken::Name(String::from('k'))),
-                    's' => expr.push(ConcreteSyntaxToken::Name(String::from('s'))),
                     _ => {
                         string_mode_is_on = true;
                         string_cache.push(c);
