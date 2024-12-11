@@ -53,7 +53,11 @@ impl Parser {
     where
         T: Into<String>,
     {
-        let cst: ConcreteSyntaxTree = Self::tokenize(t);
+        let mut cst: ConcreteSyntaxTree = Self::tokenize(t);
+        let expr: Vec<AbstractSyntaxToken> = Vec::new();
+
+        while let Some(t) = cst.expr.pop() {
+        }
 
         todo!()
     }
