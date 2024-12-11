@@ -20,8 +20,8 @@ enum AbstractSyntaxToken {
 
 #[derive(Debug, PartialEq)]
 struct Function {
-    Name: String,
-    Arguments: Vec<AbstractSyntaxToken>,
+    name: String,
+    arguments: Vec<AbstractSyntaxToken>,
 }
 
 #[derive(Debug, PartialEq)]
@@ -131,8 +131,8 @@ mod tests {
                 ast,
                 AbstractSyntaxTree {
                     expr: vec![AbstractSyntaxToken::Function(Function {
-                        Name: "i".to_string(),
-                        Arguments: vec![AbstractSyntaxToken::Value(Value::UnsignedInteger(1)),],
+                        name: "i".to_string(),
+                        arguments: vec![AbstractSyntaxToken::Value(Value::UnsignedInteger(1)),],
                     }),],
                 }
             );
