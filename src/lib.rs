@@ -22,12 +22,7 @@ pub mod types {
 }
 
 pub mod parser {
-    use crate::types::{
-        AbstractSyntaxTree,
-        ConcreteSyntaxTree,
-        ConcreteSyntaxToken,
-        Symbol,
-    };
+    use crate::types::{AbstractSyntaxTree, ConcreteSyntaxToken, ConcreteSyntaxTree, Symbol};
 
     pub struct Parser;
 
@@ -97,10 +92,10 @@ pub mod parser {
 
 #[cfg(test)]
 mod tests {
+    use crate::parser::Parser;
     use crate::types::ConcreteSyntaxToken;
     use crate::types::ConcreteSyntaxTree;
     use crate::types::Symbol;
-    use crate::parser::Parser;
 
     #[test]
     fn tokenize_with_more_spaces() {
