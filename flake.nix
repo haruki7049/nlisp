@@ -65,7 +65,7 @@
             projectRootFile = "flake.nix";
             programs.nixfmt.enable = true;
             programs.rustfmt.enable = true;
-            #programs.taplo.enable = true; # BUG: `nix flake check --all-systems` failed on aarch64-darwin
+            programs.taplo.enable = true;
             programs.actionlint.enable = true;
             programs.mdformat.enable = true;
 
