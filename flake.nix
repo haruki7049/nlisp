@@ -42,7 +42,7 @@
           cargoArtifacts = craneLib.buildDepsOnly {
             inherit src;
           };
-          textlisp = craneLib.buildPackage {
+          nlisp = craneLib.buildPackage {
             inherit src cargoArtifacts;
             strictDeps = true;
 
@@ -81,14 +81,14 @@
           };
 
           packages = {
-            inherit textlisp;
-            default = textlisp;
+            inherit nlisp;
+            default = nlisp;
             doc = cargo-doc;
           };
 
           checks = {
             inherit
-              textlisp
+              nlisp
               cargo-clippy
               cargo-doc
               ;
